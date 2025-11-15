@@ -5,9 +5,9 @@ services:
     ports:
     - "${APP_PORT}:3000"
     environment:
-      NODE_ENV: production
+      NODE_ENV: "production"
       APP_NAME: ${APP_NAME}
-      APP_ENV: ${APP_ENV}
-      APP_DEBUG: ${APP_DEBUG}
+      APP_ENV: "production"
+      APP_DEBUG: "false"
     env_file:
     - .env
