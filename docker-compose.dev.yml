@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: express-docker-dev
+    ports:
+      - "${APP_PORT}:3000"
+    volumes:
+      - .:/usr/src/app            # Sinkronisasi source code
+      - /usr/src/app/node_modules # Cegah node_modules host overwrite
+    environment:
+      NODE_ENV: development
+    env_file:
+      - .env
