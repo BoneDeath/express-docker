@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    container_name: express-docker
+    ports:
+    - "${APP_PORT}:3000"
+    environment:
+      NODE_ENV: production
+      APP_NAME: ${APP_NAME}
+      APP_ENV: ${APP_ENV}
+      APP_DEBUG: ${APP_DEBUG}
+    env_file:
+    - .env
