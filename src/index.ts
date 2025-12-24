@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.get("/", (req, res) => {
-  res.send("Hello from Express!");
+  res.send("Hello from Eassxpress!");
 });
 
 // Start server
