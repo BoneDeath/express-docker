@@ -7,3 +7,7 @@ how to change password
 becyrpt(10) yourpassword
 update password user in (src/models/user.models.ts)
 future use actual database
+
+Next PR
+strict jwt token cookies
+actual postgree database
