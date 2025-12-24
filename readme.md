@@ -10,6 +10,6 @@ becyrpt(10) yourpassword<br>
 update password user in (src/models/user.models.ts)<br>
 future use actual database<br>
 
-<h2>Next PR<h2>
+<h2>Next PR</h2>
 strict jwt token cookies<br>
 actual postgree database
