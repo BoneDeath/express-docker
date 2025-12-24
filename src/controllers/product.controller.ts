@@ -1,7 +1,10 @@
 import { Request, Response } from 'express'
+import { AuthRequest } from '../middleware/auth.middleware'
 
 const productController = {
-  async getAll(req: Request, res: Response) {
+  async getAll(req: AuthRequest, res: Response) {
+    console.log(req.user)
+
     res.json({ message: 'Get all products' })
   },
 
