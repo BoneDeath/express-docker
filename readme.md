@@ -1,7 +1,8 @@
 <h2>Step</h2>
 1. copy .env.example<br>
-2. npm install, npx prisma migrate dev --name init
-3. docker compose up
+2. npm install
+3. docker compose up -d
+4. npx prisma migrate dev --name init
 
 <h2>Add user</h2>
 

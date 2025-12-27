@@ -11,19 +11,30 @@ services:
       - .env
     volumes:
       - .:/usr/src/app
+      # LINDUNGI FOLDER INI: Agar node_modules container tidak hilang/tertimpa
+      - /usr/src/app/node_modules
+      - /usr/src/app/.prisma 
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "npx prisma generate && npx prisma migrate deploy && npm run build && npm start"
 
   db:
-    image: postgres:16
+    # ... (tetap gunakan konfigurasi sebelumnya untuk DB)
+    image: postgres:16-alpine
+    container_name: postgres_db
+    restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: app_db
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_NAME:-app_db}
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
-
-volumes:
-  pgdata:
+      - ./pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-postgres} -d $${POSTGRES_DB:-app_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5

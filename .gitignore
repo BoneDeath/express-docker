@@ -20,7 +20,7 @@ pnpm-debug.log*
 dist/
 build/
 out/
-
+pgdata/
 # =========================
 # Prisma
 # =========================
