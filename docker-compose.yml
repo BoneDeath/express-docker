@@ -2,16 +2,28 @@ services:
   app:
     build:
       context: .
-    container_name: express-docker
+      args:
+        NODE_ENV: ${NODE_ENV}
+    container_name: express-app
     ports:
       - "${APP_PORT}:3000"
-    volumes:
-      - .:/usr/src/app            # Sinkronisasi source code
-      - /usr/src/app/node_modules # Cegah node_modules host overwrite
-    environment:
-      NODE_ENV: "development"
-      APP_NAME: ${APP_NAME}
-      APP_ENV: "development"
-      APP_DEBUG: "true"
     env_file:
-    - .env
+      - .env
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: app_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

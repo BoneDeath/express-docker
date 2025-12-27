@@ -1,13 +1,16 @@
 import { Request, Response } from 'express'
-import { users } from '../models/user.models'
 import { comparePassword } from '../utils/bcrypt'
 import { signToken } from '../utils/jwt'
+import prisma from '../lib/prisma'
 
 const authController = {
   async login(req: Request, res: Response) {
     const { email, password } = req.body
 
-    const user = users.find(u => u.email === email)
+    const user = await prisma.user.findUnique({
+      where: { email }
+    })
+
     if (!user) {
       return res.status(401).json({ message: 'Email atau password salah' })
     }

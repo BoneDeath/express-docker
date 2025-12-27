@@ -1,13 +1,24 @@
-FROM node:22-alpine
+FROM node:24-alpine
 
 WORKDIR /usr/src/app
 
-# Copy dependency files ke container
-COPY package*.json ./
+ARG NODE_ENV
+ENV NODE_ENV=$NODE_ENV
 
-# Install dependencies ke development environment
+COPY package*.json ./
 RUN npm install
+
+COPY . .
+
+RUN npx prisma generate
+
+RUN if [ "$NODE_ENV" = "production" ]; then npm run build; fi
 
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+CMD sh -c "\
+  if [ \"$NODE_ENV\" = \"development\" ]; then \
+    npm run dev; \
+  else \
+    npm run start; \
+  fi"

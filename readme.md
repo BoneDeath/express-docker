@@ -1,19 +1,23 @@
 <h2>Step</h2>
 1. copy .env.example<br>
-2. POST http://localhost:3000/api/auth/login<br>
-3. generate token
+2. npm install, npx prisma migrate dev --name init
+3. docker compose up
+
+<h2>Add user</h2>
+
+add new user using becyrpt(10) as password
+
+postgres connection
 <pre>
-admin@mail.com
-admin@123
+postgresql://postgres:postgres@localhost:5432/app_db
+username:postgres
+password:postgres
 </pre>
-4. use token as header auth bearer
 
+<h2>Getting token</h2>
+POST http://localhost:3000/api/auth/login<br>
+use token as header auth bearer
 
-
-<h2>how to change password</h2>
-becyrpt(10) new string<br>
-update password user in (src/models/user.models.ts)<br>
-create new token
 
 <h2>Next PR</h2>
 strict jwt token cookies<br>
