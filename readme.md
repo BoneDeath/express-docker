@@ -1,8 +1,9 @@
 <h2>Step</h2>
-1. copy .env.example<br>
-2. npm install
-3. docker-compose up --build
-
+<pre>
+cp .env.example .env
+npm install
+docker-compose up --build
+</pre>
 <h2>Add user</h2>
 
 add new user using becyrpt(10) as password
@@ -15,4 +16,3 @@ use token as header auth bearer
 
 <h2>Next PR</h2>
 strict jwt token cookies<br>
-actual postgree database dengan prisma orm
