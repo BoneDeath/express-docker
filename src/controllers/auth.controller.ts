@@ -27,8 +27,8 @@ const authController = {
     })
 
     res.json({
-      message: 'Login berhasil',
-      token
+      token,
+
     })
   }
 }
