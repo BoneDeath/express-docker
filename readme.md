@@ -2,7 +2,7 @@
 <pre>
 cp .env.example .env
 npm install
-docker-compose up --build
+docker compose up --build
 </pre>
 <h2>Add user</h2>
 
@@ -16,3 +16,4 @@ use token as header auth bearer
 
 <h2>Next PR</h2>
 strict jwt token cookies<br>
+node demon<br>
