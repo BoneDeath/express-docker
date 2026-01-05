@@ -1,4 +1,7 @@
-<h2>Step</h2>
+<h2>Backend starter Express with Docker and Postgres</h2>
+
+
+<h3>Step</h3>
 <pre>
 DEVELOPMENT
 
@@ -17,16 +20,14 @@ docker compose up --build -d
 </pre>
 
 
-<h2>Add user</h2>
-
+<h3>Add user</h3>
 add new user using becyrpt(10) as password
-at local dbms postgree refer to .env configuration
+at local DBMS postgree refer to .env configuration
 
-<h2>Getting token</h2>
+<h3>Getting token as cookies</h3>
 POST http://localhost:3000/api/auth/login<br>
-use token as header auth bearer
 
+<h3>Testing api</h3>
+GET http://localhost:3000/api/master/products
 
-<h2>Next PR</h2>
-strict jwt token cookies<br>
-node demon<br>
+<h3>Next PR</h3>
