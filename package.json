@@ -2,11 +2,11 @@
   "name": "express-docker",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "dist/server.js",
   "scripts": {
-    "dev": "nodemon src/index.ts",
+    "dev": "nodemon",
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node dist/server.js",
     "prisma:generate": "prisma generate"
   },
   "keywords": [],

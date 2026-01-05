@@ -1,9 +1,22 @@
 <h2>Step</h2>
 <pre>
+DEVELOPMENT
+
 cp .env.example .env
 npm install
-docker compose up --build
+docker compose -f docker-compose.dev.yml up --build
 </pre>
+
+
+<pre>
+PRODUCTION
+
+cp .env.example .env.production
+npm install
+docker compose up --build -d
+</pre>
+
+
 <h2>Add user</h2>
 
 add new user using becyrpt(10) as password
