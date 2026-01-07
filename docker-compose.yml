@@ -12,7 +12,10 @@ services:
       db:
         condition: service_healthy
     command: >
-      sh -c "npm start"
+      sh -c "
+        npx prisma migrate deploy &&
+        npm start
+      "
 
   db:
     image: postgres:16-alpine
