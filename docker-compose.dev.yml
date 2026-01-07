@@ -16,7 +16,11 @@ services:
       db:
         condition: service_healthy
     command: >
-      sh -c "npm run prisma:generate && npm run dev"
+      sh -c "
+        npx prisma migrate dev --name init &&
+        npx prisma generate &&
+        npm run dev
+      "
   db:
     image: postgres:16-alpine
     container_name: postgres_dev
