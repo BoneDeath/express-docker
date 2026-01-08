@@ -16,18 +16,29 @@ PRODUCTION
 
 cp .env.example .env.production
 npm install
-docker compose up --build -d
+docker build -t [image-name] .
+docker run -p 3000:3000 --rm --env-file .env.production my-node-app:latest
+
+docker sh
+npx prisma migrate deploy
 </pre>
 
 
 <h3>Add user</h3>
 add new user using becyrpt(10) as password
-at local DBMS postgree refer to .env configuration
+at local or your serverless DBMS postgree refer to .env configuration
 
 <h3>Getting token as cookies</h3>
 POST http://localhost:3000/api/auth/login<br>
+<pre>
+json body
+{
+  "email": "admin@email.com",
+  "password": "123"
+}
+</pre>
 
 <h3>Testing api</h3>
-GET http://localhost:3000/api/master/products
+GET http://localhost:3000/api/master/users
 
 <h3>Next PR</h3>
