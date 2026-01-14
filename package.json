@@ -2,11 +2,11 @@
   "name": "express-docker",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "dist/server.js",
   "scripts": {
-    "dev": "nodemon --watch src --ext ts,json --legacy-watch src/server.ts",
+    "dev": "nodemon",
     "build": "tsc",
-    "start": "ts-node src/server.ts"
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",

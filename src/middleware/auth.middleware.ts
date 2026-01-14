@@ -17,7 +17,7 @@ const authMiddleware = (
   const token = req.cookies?.access_token;
 
   if (!token) {
-    return res.status(401).json({ message: "Token tidak ditemukan" });
+    return res.status(401).json({ message: "Cookies tidak ditemukan" });
   }
 
   try {
@@ -25,7 +25,7 @@ const authMiddleware = (
     req.user = decoded;
     next();
   } catch (error) {
-    return res.status(401).json({ message: "Token tidak valid" });
+    return res.status(401).json({ message: "Cookies ada tapi token tidak valid" });
   }
 };
 
