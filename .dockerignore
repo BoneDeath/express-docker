@@ -5,7 +5,6 @@ yarn-error.log
 pnpm-error.log
 
 # Build output
-dist
 .build
 .nuxt
 out
@@ -20,8 +19,7 @@ out
 .gitignore
 
 # Docker
-Dockerfile
-docker-compose.yml
+docker-compose*.yml
 
 # VSCode / Editor
 .vscode
@@ -30,6 +28,3 @@ docker-compose.yml
 # OS files
 .DS_Store
 Thumbs.db
-
-# Docs
-*.md

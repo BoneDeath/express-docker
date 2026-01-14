@@ -1,23 +1,31 @@
-FROM node:24-alpine
-
-ARG NODE_ENV
-ENV NODE_ENV=$NODE_ENV
+# ===== BUILD STAGE =====
+FROM node:24-alpine AS builder
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-COPY prisma ./prisma/ 
+COPY prisma ./prisma/
 
-# 1. Install dependencies
-RUN npm install
-
-# 2. Generate Prisma Client (PENTING)
+RUN npm ci
 RUN npx prisma generate
 
 COPY . .
-
-# 3. Build TypeScript ke JavaScript
 RUN npm run build
 
-EXPOSE 3000
 
-CMD ["npm", "start"]
+# ===== RUNTIME STAGE =====
+FROM node:24-alpine
+WORKDIR /usr/src/app
+
+ENV NODE_ENV=production
+
+COPY package*.json ./
+RUN npm ci --omit=dev
+
+COPY --from=builder /usr/src/app/dist ./dist
+COPY --from=builder /usr/src/app/prisma ./prisma
+COPY --from=builder /usr/src/app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder /usr/src/app/node_modules/@prisma ./node_modules/@prisma
+COPY prisma.config.ts ./prisma.config.ts
+
+EXPOSE 3000
+CMD ["npm", "run", "start"]

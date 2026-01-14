@@ -5,6 +5,7 @@ import authRoutes from './auth.routes'
 
 // ===== MASTER DATA ROUTES =====
 import productRoutes from './master/masters.product.routes'
+import userRoutes from './master/masters.user.routes'
 
 const router = Router()
 
@@ -21,5 +22,7 @@ router.use('/auth', authRoutes)
  * =========================
  */
 router.use('/master/products', productRoutes)
+router.use('/master/users', userRoutes)
+
 
 export default router

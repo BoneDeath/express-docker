@@ -2,10 +2,10 @@ import { Request, Response } from 'express'
 import { AuthRequest } from '../middleware/auth.middleware'
 import prisma from "../lib/prisma";
 
-const productController = {
+const userController = {
   async getAll(req: AuthRequest, res: Response) {
-    const products =  await prisma.product.findMany();
-    res.json(products)
+    const users =  await prisma.user.findMany();
+    res.json(users)
   },
 
   async getById(req: Request, res: Response) {
@@ -13,20 +13,21 @@ const productController = {
   },
 
   async create(req: AuthRequest, res: Response) {
-    const { name, description, price } = req.body;
-    const query= await prisma.product.create({
+    const { name, email, password } = req.body;
+    const query= await prisma.user.create({
       data: {
         name,
-        description,
-        price,
+        email,
+        password,
       },
     });
     if (query) {
-      res.status(201).json({ message: 'Product created' })
+      res.status(201).json({ message: 'User created' })
     } else {
-      res.status(400).json({ message: 'Failed to create product' })
+      res.status(400).json({ message: 'Failed to create user' })
     }
   },
+  
 
   async update(req: Request, res: Response) {
     res.json({ message: 'Product updated' })
@@ -37,4 +38,4 @@ const productController = {
   }
 }
 
-export default productController
+export default userController
