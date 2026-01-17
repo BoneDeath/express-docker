@@ -24,7 +24,7 @@ const DataSource = {
 }
 
 
-// Specific user interface configurations
+// Specific user interface configurations not saved in the database new user automaically get this configurations
 // UI Builder
 
 const AccessMenu = [
@@ -44,7 +44,7 @@ export const UI = {
 }
 
 
-//example response data from AccessMenu data source that generated to be used in the UI
+//example response data from AccessMenu data source that generated to be used in the UI after user press menu item
 const response = {
 	PRODUCT: {
 		permission: {
